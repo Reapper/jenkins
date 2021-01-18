@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Launch') {
             steps {
-                sh 'python /root/jenkins/app/test.py'
+                sh 'python /srv/test/test.py'
             }
         }
         stage('Echo') {
