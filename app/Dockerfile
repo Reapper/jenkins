@@ -1,6 +1,15 @@
-FROM python
+FROM jenkins/jenkins:latest
 USER root
-RUN mkdir /srv/test
-COPY ./test.py /srv/test
-RUN chmod +x /srv/test/test.py && chmod 755 /srv/test/test.py
-CMD ["python", "/srv/test/test.py"]
+RUN apt update && \
+    apt -y install apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+    add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+    $(lsb_release -cs) \
+    stable" && \
+    apt update && \
+    apt -y install docker-ce
