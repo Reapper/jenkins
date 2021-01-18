@@ -1,12 +1,11 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('Print') {
+        stage('Launch') {
             steps {
-                python '/root/jenkins/test.py'
+                sh 'python /srv/test/test.py'
             }
         }
-
         stage('Echo') {
             steps {
                 sh 'whoami'
