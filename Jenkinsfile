@@ -2,8 +2,8 @@ pipeline {
     agent { dockerfile true }
     stages {
         stage('Print'){
-            step{
-                python "/root/jenkins/test.py"
+            steps{
+                python '/root/jenkins/test.py'
             }
         }
 
